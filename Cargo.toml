@@ -34,4 +34,4 @@ thiserror   = "1.0"
 tracing     = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 # Stellar SDK (horizon + soroban)
-stellar-sdk = { version = "0.8", optional = true }
+stellar-sdk = { version = "0.8" }
