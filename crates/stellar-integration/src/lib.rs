@@ -66,7 +66,9 @@ pub struct HorizonClient {
 
 impl HorizonClient {
     pub fn new(config: &NetworkConfig) -> Self {
-        Self { base_url: config.horizon_url.clone() }
+        Self {
+            base_url: config.horizon_url.clone(),
+        }
     }
 
     /// Fetch account details from Horizon.
@@ -94,7 +96,9 @@ pub struct SorobanClient {
 
 impl SorobanClient {
     pub fn new(config: &NetworkConfig) -> Option<Self> {
-        config.soroban_rpc_url.as_ref().map(|url| Self { rpc_url: url.clone() })
+        config.soroban_rpc_url.as_ref().map(|url| Self {
+            rpc_url: url.clone(),
+        })
     }
 
     /// Call a read-only Soroban contract function.
@@ -128,7 +132,10 @@ pub struct AuthVerifier {
 
 impl AuthVerifier {
     pub fn new(soroban: SorobanClient, contract_id: impl Into<String>) -> Self {
-        Self { soroban, contract_id: contract_id.into() }
+        Self {
+            soroban,
+            contract_id: contract_id.into(),
+        }
     }
 
     /// Returns `true` if `token` is valid according to the on-chain contract.

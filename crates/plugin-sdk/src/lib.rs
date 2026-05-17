@@ -85,9 +85,7 @@ extern "C" {
 #[cfg(target_arch = "wasm32")]
 pub fn read_request(ptr: u32, len: u32) -> Request {
     // SAFETY: host wrote valid JSON into our linear memory
-    let slice = unsafe {
-        core::slice::from_raw_parts(ptr as *const u8, len as usize)
-    };
+    let slice = unsafe { core::slice::from_raw_parts(ptr as *const u8, len as usize) };
     // TODO: replace with a proper deserialiser; serde_json pulls in std
     let _ = slice;
     unimplemented!("deserialise Request from JSON bytes")

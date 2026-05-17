@@ -43,7 +43,9 @@ pub struct RouterSection {
     pub max_connections: usize,
 }
 
-fn default_max_connections() -> usize { 1024 }
+fn default_max_connections() -> usize {
+    1024
+}
 
 // ---------------------------------------------------------------------------
 // Route config

@@ -95,7 +95,9 @@ pub struct PluginRegistry {
 }
 
 impl PluginRegistry {
-    pub fn new() -> Self { Self {} }
+    pub fn new() -> Self {
+        Self {}
+    }
 
     /// Load (or return cached) plugin for `path`.
     pub fn get_or_load(&mut self, _path: &Path) -> Result<Plugin> {
@@ -105,5 +107,7 @@ impl PluginRegistry {
 }
 
 impl Default for PluginRegistry {
-    fn default() -> Self { Self::new() }
+    fn default() -> Self {
+        Self::new()
+    }
 }
