@@ -59,6 +59,7 @@ impl NetworkConfig {
 /// - [ ] Add `get_account(account_id)` → `AccountResponse`
 /// - [ ] Add `submit_transaction(xdr)` → `TransactionResult`
 /// - [ ] Add connection pooling and retry with exponential back-off
+#[allow(dead_code)]
 pub struct HorizonClient {
     base_url: String,
     // TODO: http_client: hyper::Client<…>
@@ -90,6 +91,7 @@ impl HorizonClient {
 /// - [ ] Implement `simulate_transaction` for read-only contract calls
 /// - [ ] Implement `send_transaction` for state-mutating calls
 /// - [ ] Add XDR encoding helpers (use `stellar-xdr` crate)
+#[allow(dead_code)]
 pub struct SorobanClient {
     rpc_url: String,
 }
@@ -125,6 +127,7 @@ impl SorobanClient {
 /// # TODO
 /// - [ ] Define the expected Soroban contract interface (SEP-10 / custom)
 /// - [ ] Cache verification results with a short TTL
+#[allow(dead_code)]
 pub struct AuthVerifier {
     soroban: SorobanClient,
     contract_id: String,
