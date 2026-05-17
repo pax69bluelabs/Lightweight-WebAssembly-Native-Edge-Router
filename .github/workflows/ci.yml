@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    name: Check & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown,wasm32-wasip1
+          components: clippy,rustfmt
+
+      - uses: Swatinem/rust-cache@v2
+
+      # --- native targets ---------------------------------------------------
+
+      - name: fmt
+        run: cargo fmt --all -- --check
+
+      # Check the whole workspace compiles (native)
+      - name: cargo check (native)
+        run: cargo check --workspace
+
+      # Only crates whose tests don't hit unimplemented!()
+      - name: cargo test (config)
+        run: cargo test -p config
+
+      - name: clippy (native)
+        run: cargo clippy --workspace -- -D warnings
+
+      # --- wasm32 targets ---------------------------------------------------
+
+      - name: cargo check (plugin-sdk, wasm32-unknown-unknown)
+        run: cargo check -p plugin-sdk --target wasm32-unknown-unknown
+
+      - name: cargo check (hello-plugin, wasm32-unknown-unknown)
+        run: cargo check -p hello-plugin --target wasm32-unknown-unknown

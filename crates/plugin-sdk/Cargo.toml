@@ -1,0 +1,11 @@
+[package]
+name    = "plugin-sdk"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+# This crate is compiled to wasm32 by plugin authors.
+# Keep dependencies minimal and no_std-compatible where possible.
+[dependencies]
+serde.workspace     = true
+serde_json.workspace = true
